@@ -1,0 +1,5 @@
+var greeting;
+var artist;
+greeting = 100;
+artist = 50;
+print greeting + artist;
