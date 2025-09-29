@@ -1,5 +1,7 @@
-var greeting;
+var paint;
 var artist;
-greeting = 100;
+var painting;
+paint = 100;
 artist = 50;
-print greeting + artist;
+paint + artist = painting;
+print painting;

@@ -4,22 +4,16 @@ code
 : (statement ';')+
 ;
 
-statement
-: decl
-| assign
-| addition
-| print
-;
+statement: decl | assign | forloop| addition | print;
 
 decl: 'var' ID;
 assign: ID '=' expr;
 addition: expr '+' expr;
-print: 'print' addition;
+forloop: 'for' expr 'in collection(' expr ',' addition '):'
+     expr '+=' expr;
+print: 'print' expr;
 
-expr
-: ID
-| INT
-;
+expr: ID | INT;
 
 ID: ('a'..'z')+ ;
 INT: ('0'..'9')+ ;

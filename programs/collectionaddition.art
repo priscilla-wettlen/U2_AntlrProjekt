@@ -1,0 +1,5 @@
+var painting;
+var collector;
+for painting in collection(1, collector + 1):
+    collector += painting;
+print collector;
