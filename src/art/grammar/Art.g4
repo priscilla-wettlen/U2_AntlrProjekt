@@ -1,4 +1,4 @@
-grammar art;
+grammar Art;
 
 code
 : (statement ';')+
