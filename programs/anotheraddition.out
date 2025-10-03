@@ -1,0 +1,15 @@
+Entering code
+push 1
+pop a
+push 2
+pop b
+push a
+push b
+add
+pop c
+push c
+push a
+add
+pop d
+print
+Exiting code

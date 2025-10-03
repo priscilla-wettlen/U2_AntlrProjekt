@@ -1,5 +1,5 @@
-var painting;
-var collector;
+var painting = 1;
+var collector = 5;
 for painting in collection(1, collector + 1):
     collector += painting;
 print collector;

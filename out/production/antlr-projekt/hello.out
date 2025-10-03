@@ -1,0 +1,9 @@
+push 1
+pop a
+push 5
+pop b
+push a
+push b
+add
+pop c
+print

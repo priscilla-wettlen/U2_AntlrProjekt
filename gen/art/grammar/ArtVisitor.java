@@ -41,6 +41,12 @@ public interface ArtVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddition(ArtParser.AdditionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ArtParser#forloop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForloop(ArtParser.ForloopContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ArtParser#print}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

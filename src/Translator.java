@@ -25,7 +25,7 @@ public class Translator {
 	 */
 	public static void main(String[] args) {
 		if (args.length < 2) {
-			System.out.println("Usage: java Translator infile outfile");
+			//System.out.println("Usage: java Translator infile outfile");
 			System.exit(0);
 		}
 
@@ -115,7 +115,7 @@ public class Translator {
 	 * printed and then popping it to the first address of the Hack
 	 * computer's video memory.
 	 *
-	 * @param line A string to translate.
+
 	 *
 	 * @return A translated line.
 	 */

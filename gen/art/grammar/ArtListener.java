@@ -58,6 +58,16 @@ public interface ArtListener extends ParseTreeListener {
 	 */
 	void exitAddition(ArtParser.AdditionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ArtParser#forloop}.
+	 * @param ctx the parse tree
+	 */
+	void enterForloop(ArtParser.ForloopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ArtParser#forloop}.
+	 * @param ctx the parse tree
+	 */
+	void exitForloop(ArtParser.ForloopContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ArtParser#print}.
 	 * @param ctx the parse tree
 	 */

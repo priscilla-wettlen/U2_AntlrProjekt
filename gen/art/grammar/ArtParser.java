@@ -17,26 +17,30 @@ public class ArtParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, ID=6, INT=7, WS=8;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, ID=11, INT=12, WS=13;
 	public static final int
 		RULE_code = 0, RULE_statement = 1, RULE_decl = 2, RULE_assign = 3, RULE_addition = 4, 
-		RULE_print = 5, RULE_expr = 6;
+		RULE_forloop = 5, RULE_print = 6, RULE_expr = 7;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"code", "statement", "decl", "assign", "addition", "print", "expr"
+			"code", "statement", "decl", "assign", "addition", "forloop", "print", 
+			"expr"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "';'", "'var'", "'='", "'+'", "'print'"
+			null, "';'", "'var'", "'='", "'+'", "'for'", "'in collection('", "','", 
+			"'):'", "'+='", "'print'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, "ID", "INT", "WS"
+			null, null, null, null, null, null, null, null, null, null, null, "ID", 
+			"INT", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -124,22 +128,22 @@ public class ArtParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(17); 
+			setState(19); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(14);
+				setState(16);
 				statement();
-				setState(15);
+				setState(17);
 				match(T__0);
 				}
 				}
-				setState(19); 
+				setState(21); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 228L) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 7204L) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -160,6 +164,9 @@ public class ArtParser extends Parser {
 		}
 		public AssignContext assign() {
 			return getRuleContext(AssignContext.class,0);
+		}
+		public ForloopContext forloop() {
+			return getRuleContext(ForloopContext.class,0);
 		}
 		public AdditionContext addition() {
 			return getRuleContext(AdditionContext.class,0);
@@ -190,34 +197,41 @@ public class ArtParser extends Parser {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_statement);
 		try {
-			setState(25);
+			setState(28);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(21);
+				setState(23);
 				decl();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(22);
+				setState(24);
 				assign();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(23);
-				addition();
+				setState(25);
+				forloop();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(24);
+				setState(26);
+				addition();
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(27);
 				print();
 				}
 				break;
@@ -237,9 +251,6 @@ public class ArtParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class DeclContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(ArtParser.ID, 0); }
-		public AssignContext assign() {
-			return getRuleContext(AssignContext.class,0);
-		}
 		public DeclContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -263,27 +274,12 @@ public class ArtParser extends Parser {
 		DeclContext _localctx = new DeclContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_decl);
 		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(30);
+			match(T__1);
 			setState(31);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(27);
-				match(T__1);
-				setState(28);
-				match(ID);
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(29);
-				match(T__1);
-				setState(30);
-				assign();
-				}
-				break;
+			match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -331,7 +327,7 @@ public class ArtParser extends Parser {
 		try {
 			setState(39);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
@@ -420,9 +416,81 @@ public class ArtParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
+	public static class ForloopContext extends ParserRuleContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public AdditionContext addition() {
+			return getRuleContext(AdditionContext.class,0);
+		}
+		public ForloopContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_forloop; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ArtListener ) ((ArtListener)listener).enterForloop(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ArtListener ) ((ArtListener)listener).exitForloop(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ArtVisitor ) return ((ArtVisitor<? extends T>)visitor).visitForloop(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ForloopContext forloop() throws RecognitionException {
+		ForloopContext _localctx = new ForloopContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_forloop);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(45);
+			match(T__4);
+			setState(46);
+			expr();
+			setState(47);
+			match(T__5);
+			setState(48);
+			expr();
+			setState(49);
+			match(T__6);
+			setState(50);
+			addition();
+			setState(51);
+			match(T__7);
+			setState(52);
+			expr();
+			setState(53);
+			match(T__8);
+			setState(54);
+			expr();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	@SuppressWarnings("CheckReturnValue")
 	public static class PrintContext extends ParserRuleContext {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
+		}
+		public AdditionContext addition() {
+			return getRuleContext(AdditionContext.class,0);
 		}
 		public PrintContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -445,14 +513,29 @@ public class ArtParser extends Parser {
 
 	public final PrintContext print() throws RecognitionException {
 		PrintContext _localctx = new PrintContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_print);
+		enterRule(_localctx, 12, RULE_print);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(45);
-			match(T__4);
-			setState(46);
-			expr();
+			setState(60);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(56);
+				match(T__9);
+				setState(57);
+				expr();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(58);
+				match(T__9);
+				setState(59);
+				addition();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -491,12 +574,12 @@ public class ArtParser extends Parser {
 
 	public final ExprContext expr() throws RecognitionException {
 		ExprContext _localctx = new ExprContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_expr);
+		enterRule(_localctx, 14, RULE_expr);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(48);
+			setState(62);
 			_la = _input.LA(1);
 			if ( !(_la==ID || _la==INT) ) {
 			_errHandler.recoverInline(this);
@@ -520,38 +603,45 @@ public class ArtParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\b3\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\rA\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
-		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0001\u0000\u0001\u0000\u0001"+
-		"\u0000\u0004\u0000\u0012\b\u0000\u000b\u0000\f\u0000\u0013\u0001\u0001"+
-		"\u0001\u0001\u0001\u0001\u0001\u0001\u0003\u0001\u001a\b\u0001\u0001\u0002"+
-		"\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002 \b\u0002\u0001\u0003"+
+		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0001"+
+		"\u0000\u0001\u0000\u0001\u0000\u0004\u0000\u0014\b\u0000\u000b\u0000\f"+
+		"\u0000\u0015\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0003\u0001\u001d\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0003"+
 		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0003\u0003"+
 		"(\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005"+
-		"\u0001\u0005\u0001\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0000\u0000"+
-		"\u0007\u0000\u0002\u0004\u0006\b\n\f\u0000\u0001\u0001\u0000\u0006\u0007"+
-		"1\u0000\u0011\u0001\u0000\u0000\u0000\u0002\u0019\u0001\u0000\u0000\u0000"+
-		"\u0004\u001f\u0001\u0000\u0000\u0000\u0006\'\u0001\u0000\u0000\u0000\b"+
-		")\u0001\u0000\u0000\u0000\n-\u0001\u0000\u0000\u0000\f0\u0001\u0000\u0000"+
-		"\u0000\u000e\u000f\u0003\u0002\u0001\u0000\u000f\u0010\u0005\u0001\u0000"+
-		"\u0000\u0010\u0012\u0001\u0000\u0000\u0000\u0011\u000e\u0001\u0000\u0000"+
-		"\u0000\u0012\u0013\u0001\u0000\u0000\u0000\u0013\u0011\u0001\u0000\u0000"+
-		"\u0000\u0013\u0014\u0001\u0000\u0000\u0000\u0014\u0001\u0001\u0000\u0000"+
-		"\u0000\u0015\u001a\u0003\u0004\u0002\u0000\u0016\u001a\u0003\u0006\u0003"+
-		"\u0000\u0017\u001a\u0003\b\u0004\u0000\u0018\u001a\u0003\n\u0005\u0000"+
-		"\u0019\u0015\u0001\u0000\u0000\u0000\u0019\u0016\u0001\u0000\u0000\u0000"+
-		"\u0019\u0017\u0001\u0000\u0000\u0000\u0019\u0018\u0001\u0000\u0000\u0000"+
-		"\u001a\u0003\u0001\u0000\u0000\u0000\u001b\u001c\u0005\u0002\u0000\u0000"+
-		"\u001c \u0005\u0006\u0000\u0000\u001d\u001e\u0005\u0002\u0000\u0000\u001e"+
-		" \u0003\u0006\u0003\u0000\u001f\u001b\u0001\u0000\u0000\u0000\u001f\u001d"+
-		"\u0001\u0000\u0000\u0000 \u0005\u0001\u0000\u0000\u0000!\"\u0005\u0006"+
-		"\u0000\u0000\"#\u0005\u0003\u0000\u0000#(\u0003\f\u0006\u0000$%\u0005"+
-		"\u0006\u0000\u0000%&\u0005\u0003\u0000\u0000&(\u0003\b\u0004\u0000\'!"+
-		"\u0001\u0000\u0000\u0000\'$\u0001\u0000\u0000\u0000(\u0007\u0001\u0000"+
-		"\u0000\u0000)*\u0003\f\u0006\u0000*+\u0005\u0004\u0000\u0000+,\u0003\f"+
-		"\u0006\u0000,\t\u0001\u0000\u0000\u0000-.\u0005\u0005\u0000\u0000./\u0003"+
-		"\f\u0006\u0000/\u000b\u0001\u0000\u0000\u000001\u0007\u0000\u0000\u0000"+
-		"1\r\u0001\u0000\u0000\u0000\u0004\u0013\u0019\u001f\'";
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0006\u0001\u0006"+
+		"\u0001\u0006\u0001\u0006\u0003\u0006=\b\u0006\u0001\u0007\u0001\u0007"+
+		"\u0001\u0007\u0000\u0000\b\u0000\u0002\u0004\u0006\b\n\f\u000e\u0000\u0001"+
+		"\u0001\u0000\u000b\f?\u0000\u0013\u0001\u0000\u0000\u0000\u0002\u001c"+
+		"\u0001\u0000\u0000\u0000\u0004\u001e\u0001\u0000\u0000\u0000\u0006\'\u0001"+
+		"\u0000\u0000\u0000\b)\u0001\u0000\u0000\u0000\n-\u0001\u0000\u0000\u0000"+
+		"\f<\u0001\u0000\u0000\u0000\u000e>\u0001\u0000\u0000\u0000\u0010\u0011"+
+		"\u0003\u0002\u0001\u0000\u0011\u0012\u0005\u0001\u0000\u0000\u0012\u0014"+
+		"\u0001\u0000\u0000\u0000\u0013\u0010\u0001\u0000\u0000\u0000\u0014\u0015"+
+		"\u0001\u0000\u0000\u0000\u0015\u0013\u0001\u0000\u0000\u0000\u0015\u0016"+
+		"\u0001\u0000\u0000\u0000\u0016\u0001\u0001\u0000\u0000\u0000\u0017\u001d"+
+		"\u0003\u0004\u0002\u0000\u0018\u001d\u0003\u0006\u0003\u0000\u0019\u001d"+
+		"\u0003\n\u0005\u0000\u001a\u001d\u0003\b\u0004\u0000\u001b\u001d\u0003"+
+		"\f\u0006\u0000\u001c\u0017\u0001\u0000\u0000\u0000\u001c\u0018\u0001\u0000"+
+		"\u0000\u0000\u001c\u0019\u0001\u0000\u0000\u0000\u001c\u001a\u0001\u0000"+
+		"\u0000\u0000\u001c\u001b\u0001\u0000\u0000\u0000\u001d\u0003\u0001\u0000"+
+		"\u0000\u0000\u001e\u001f\u0005\u0002\u0000\u0000\u001f \u0005\u000b\u0000"+
+		"\u0000 \u0005\u0001\u0000\u0000\u0000!\"\u0005\u000b\u0000\u0000\"#\u0005"+
+		"\u0003\u0000\u0000#(\u0003\u000e\u0007\u0000$%\u0005\u000b\u0000\u0000"+
+		"%&\u0005\u0003\u0000\u0000&(\u0003\b\u0004\u0000\'!\u0001\u0000\u0000"+
+		"\u0000\'$\u0001\u0000\u0000\u0000(\u0007\u0001\u0000\u0000\u0000)*\u0003"+
+		"\u000e\u0007\u0000*+\u0005\u0004\u0000\u0000+,\u0003\u000e\u0007\u0000"+
+		",\t\u0001\u0000\u0000\u0000-.\u0005\u0005\u0000\u0000./\u0003\u000e\u0007"+
+		"\u0000/0\u0005\u0006\u0000\u000001\u0003\u000e\u0007\u000012\u0005\u0007"+
+		"\u0000\u000023\u0003\b\u0004\u000034\u0005\b\u0000\u000045\u0003\u000e"+
+		"\u0007\u000056\u0005\t\u0000\u000067\u0003\u000e\u0007\u00007\u000b\u0001"+
+		"\u0000\u0000\u000089\u0005\n\u0000\u00009=\u0003\u000e\u0007\u0000:;\u0005"+
+		"\n\u0000\u0000;=\u0003\b\u0004\u0000<8\u0001\u0000\u0000\u0000<:\u0001"+
+		"\u0000\u0000\u0000=\r\u0001\u0000\u0000\u0000>?\u0007\u0000\u0000\u0000"+
+		"?\u000f\u0001\u0000\u0000\u0000\u0004\u0015\u001c\'<";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
