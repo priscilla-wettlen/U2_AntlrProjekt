@@ -7,4 +7,4 @@ push b
 add
 pop c
 push c
-print
+print c

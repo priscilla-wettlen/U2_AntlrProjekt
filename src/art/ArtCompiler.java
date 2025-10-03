@@ -74,7 +74,7 @@ public class ArtCompiler extends ArtBaseListener {
             out.append("push ").append(ctx.expr().getText()).append("\n");
         }
 
-        out.append("print\n");
+        out.append("print ").append(ctx.expr().getText()).append("\n");
     }
 
         public String getCompiledCode() {

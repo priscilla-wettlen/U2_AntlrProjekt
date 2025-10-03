@@ -7,4 +7,5 @@
 add
   pop static 2
   push static 2
+  push static 2
   pop that 16384
