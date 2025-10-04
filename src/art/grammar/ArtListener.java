@@ -48,15 +48,75 @@ public interface ArtListener extends ParseTreeListener {
 	 */
 	void exitAssign(ArtParser.AssignContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ArtParser#addition}.
+	 * Enter a parse tree produced by {@link ArtParser#range}.
 	 * @param ctx the parse tree
 	 */
-	void enterAddition(ArtParser.AdditionContext ctx);
+	void enterRange(ArtParser.RangeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ArtParser#addition}.
+	 * Exit a parse tree produced by {@link ArtParser#range}.
 	 * @param ctx the parse tree
 	 */
-	void exitAddition(ArtParser.AdditionContext ctx);
+	void exitRange(ArtParser.RangeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ArtParser#add}.
+	 * @param ctx the parse tree
+	 */
+	void enterAdd(ArtParser.AddContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ArtParser#add}.
+	 * @param ctx the parse tree
+	 */
+	void exitAdd(ArtParser.AddContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ArtParser#sub}.
+	 * @param ctx the parse tree
+	 */
+	void enterSub(ArtParser.SubContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ArtParser#sub}.
+	 * @param ctx the parse tree
+	 */
+	void exitSub(ArtParser.SubContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ArtParser#lt}.
+	 * @param ctx the parse tree
+	 */
+	void enterLt(ArtParser.LtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ArtParser#lt}.
+	 * @param ctx the parse tree
+	 */
+	void exitLt(ArtParser.LtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ArtParser#mt}.
+	 * @param ctx the parse tree
+	 */
+	void enterMt(ArtParser.MtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ArtParser#mt}.
+	 * @param ctx the parse tree
+	 */
+	void exitMt(ArtParser.MtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ArtParser#forLoop}.
+	 * @param ctx the parse tree
+	 */
+	void enterForLoop(ArtParser.ForLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ArtParser#forLoop}.
+	 * @param ctx the parse tree
+	 */
+	void exitForLoop(ArtParser.ForLoopContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ArtParser#suite}.
+	 * @param ctx the parse tree
+	 */
+	void enterSuite(ArtParser.SuiteContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ArtParser#suite}.
+	 * @param ctx the parse tree
+	 */
+	void exitSuite(ArtParser.SuiteContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ArtParser#print}.
 	 * @param ctx the parse tree

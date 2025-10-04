@@ -6,68 +6,49 @@ import art.grammar.ArtParser;
 
 public class ArtCompiler extends ArtBaseListener {
     private StringBuilder out = new StringBuilder();
-//    private String startLoopLabel = newLabel();
-//    private String endLoopLabel = newLabel();
-//    private int labelCount = 0;
-//
-//    private String newLabel() {
-//        return "label" + (labelCount++);
-//    }
 
-//    @Override public void enterCode(ArtParser.CodeContext ctx) {
-//        out.append("Entering code\n");
-//    }
-//
-//    @Override public void exitCode(ArtParser.CodeContext ctx) {
-//        out.append("Exiting code");
-//    }
-
-    @Override public void exitAssign(ArtParser.AssignContext ctx) {
-        out.append("pop ").append(ctx.ID().getText()).append("\n");
+    /**
+     * Label handlers
+     * */
+    private String enterForLoopLabel() {
+        return "Label enterForLoop";
     }
+
+    private String exitForLoopLabel() {
+        return "Label exitForLoop";
+    }
+
+    /**
+     * exitExpression method
+     * */
     @Override public void exitExpr(ArtParser.ExprContext ctx) {
         if (ctx.INT() != null) {
             out.append("push ").append(ctx.INT().getText()).append("\n");
         }
-
     }
 
-    @Override public void exitAddition(ArtParser.AdditionContext ctx) {
-        out.append("push ").append(ctx.expr(0).getText()).append("\n"); //the first number to add, pos 0
-        out.append("push ").append(ctx.expr(1).getText()).append("\n"); //the second number to add pos 1
 
-        out.append("add\n");
+    /**
+     * exitAssign method
+     * */
+    @Override public void exitAssign(ArtParser.AssignContext ctx) {
+        out.append("pop ").append(ctx.ID().getText()).append("\n");
     }
 
-//    @Override
-//    public void exitPrint(ArtParser.PrintContext ctx) {
-//        out.append("print\n");
-//    }
-//    @Override public void enterForloop(ArtParser.ForloopContext ctx) {
-//        out.append(";; for loop init\n");
-//        out.append("push ");
-//        out.append("pop ").append(ctx.ID().getText()).append("\n");
-//
-//        out.append(startLoopLabel).append(":\n");
-//
-//        out.append("push ").append(ctx.ID().getText()).append("\n");
-//        out.append("lt").append("\n");
-//        out.append("jz ").append(endLoopLabel).append("\n");
-//    }
-//
-//    @Override public void exitForloop(ArtParser.ForloopContext ctx) {
-//        out.append("push ").append(ctx.ID().getText()).append("\n");
-//        out.append("push 1\n");
+
+    /**
+     * exitAdd method
+     * */
+//    @Override public void exitAdd(ArtParser.AddContext ctx) {
+//        out.append("push ").append(ctx.expr(0).getText()).append("\n"); //the first number to add, pos 0
+//        out.append("push ").append(ctx.expr(1).getText()).append("\n"); //the second number to add pos 1
 //        out.append("add\n");
-//        out.append("pop ").append(ctx.ID().getText()).append("\n");
-//
-//        out.append("goto ").append(ctx.start).append("\n");
-//
-//        out.append(endLoopLabel).append(":\n");
-//
-//
 //    }
 
+
+    /**
+     * exitPrint method
+     * */
     @Override
     public void exitPrint(ArtParser.PrintContext ctx) {
         if (ctx.expr() != null) {
@@ -77,8 +58,29 @@ public class ArtCompiler extends ArtBaseListener {
         out.append("print ").append(ctx.expr().getText()).append("\n");
     }
 
-        public String getCompiledCode() {
+    /**
+     * exitForLoop method
+     * */
+    @Override public void exitForLoop(ArtParser.ForLoopContext ctx) {
+        String loopingVar = ctx.ID().getText();
+        String startVar = ctx.range().expr(0).getText();
+        String endVar = ctx.range().expr(1).getText();
+        String loopStartLbl = enterForLoopLabel();
+        String loopEndLbl = exitForLoopLabel();
+
+        out.append("// for ").append(loopingVar).append(" in collection from ").append(startVar).append(" to ").append(endVar).append("\n");
+        out.append(loopingVar).append(" = ").append(startVar).append(";\n");
+        out.append(loopStartLbl).append(":\n");
+        out.append("if ").append(loopingVar).append(" > ").append(endVar).append(" goto ").append(loopEndLbl).append(";\n");
+        out.append(loopingVar).append(" = ").append(loopingVar).append(" + 1;\n");
+        out.append("goto ").append(loopStartLbl).append(";\n");
+        out.append(loopEndLbl).append(":\n");
+    }
+
+
+    public String getCompiledCode() {
             return out.toString();
         }
+
 }
 

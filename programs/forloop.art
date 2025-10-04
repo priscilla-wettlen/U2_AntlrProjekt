@@ -1,0 +1,8 @@
+artwork a = 1;
+artwork b = 5;
+artwork c = 0;
+for c in collection from a to b:
+    c+=a;
+    a++;
+    a<b;;
+paint c;

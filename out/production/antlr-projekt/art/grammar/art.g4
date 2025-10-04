@@ -1,25 +1,73 @@
 grammar Art;
 
 code
-: (statement ';')+
-;
-statement: decl | assign | addition | print;
+    : (statement ';')+ ;
 
-//statement: decl | assign | forloop| addition | print;
+statement
+    : decl
+    | assign
+    | range
+    | add
+    | sub
+    | lt
+    | mt
+    | forLoop
+    | print
+    ;
 
-decl: 'var' ID | 'var' assign;
-assign: ID '=' expr | ID '=' addition;
-addition: expr '+' expr;
-//addition_result: ID '=' addition;
-//forloop: 'for' ID 'in collection(' expr ',' addition '):'
-//     expr '+=' expr;
-//forloop:
-//    'for' ID 'in' 'collection' '(' start=expr ',' end=expr ')' ':'
-//      body=statement;
-print: 'print' expr;
+decl
+    : 'artwork' assign
+    ;
 
-expr: ID | INT ;
+assign
+    : ID '=' expr
+    ;
 
-ID: ('a'..'z')+ ;
-INT: ('0'..'9')+ ;
-WS: [ \n\t\r]+ -> skip;
+range
+    : 'from' expr 'to' expr
+    ;
+
+add
+    : expr PLUSEQUAL expr
+    | expr PLUSPLUS
+    | expr PLUS expr
+    ;
+
+sub
+    : expr MINUS expr
+    ;
+
+lt
+    : expr LT expr
+    ;
+
+mt
+    : expr MT expr
+    ;
+
+forLoop
+    : 'for' ID 'in' 'collection' range ':' suite
+    ;
+
+suite
+    : (statement';')+
+    ;
+
+print
+    : 'paint' expr
+    ;
+
+expr
+    : ID
+    | INT
+    ;
+
+ID : [a-z]+ ;
+INT: [0-9]+ ;
+PLUSEQUAL: '+=' ;
+PLUSPLUS : '++' ;
+PLUS     : '+' ;
+MINUS    : '-' ;
+LT       : '<' ;
+MT       : '>' ;
+WS: [ \t\r\n]+ -> skip ;

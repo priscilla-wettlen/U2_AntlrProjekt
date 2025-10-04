@@ -1,4 +1,0 @@
-var paint = 100;
-var artist = 50;
-var painting = paint + artist;
-print painting;

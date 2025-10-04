@@ -35,11 +35,47 @@ public interface ArtVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssign(ArtParser.AssignContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ArtParser#addition}.
+	 * Visit a parse tree produced by {@link ArtParser#range}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAddition(ArtParser.AdditionContext ctx);
+	T visitRange(ArtParser.RangeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArtParser#add}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAdd(ArtParser.AddContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArtParser#sub}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSub(ArtParser.SubContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArtParser#lt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLt(ArtParser.LtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArtParser#mt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMt(ArtParser.MtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArtParser#forLoop}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForLoop(ArtParser.ForLoopContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArtParser#suite}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSuite(ArtParser.SuiteContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ArtParser#print}.
 	 * @param ctx the parse tree

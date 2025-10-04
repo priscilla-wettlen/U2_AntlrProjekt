@@ -27,7 +27,7 @@ public class RunArt {
         } else {
             System.out.println("Enter file name:");
             Scanner scanner = new Scanner(System.in);
-            sourceFile = "programs/hello.art";//scanner.nextLine();
+            sourceFile = "programs/forloop.art";//scanner.nextLine();
         }
 
         if(args.length > 1){
@@ -36,7 +36,7 @@ public class RunArt {
             System.out.println("Enter compiled file name:");
             Scanner scanner = new Scanner(System.in);
             //outFile = scanner.nextLine();
-            outFile = "programs/hello.out";
+            outFile = "programs/forloop.out";
         }
 
         CharStream inputStream = CharStreams.fromFileName(sourceFile); //version mismatch??

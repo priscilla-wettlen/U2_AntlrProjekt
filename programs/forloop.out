@@ -1,0 +1,15 @@
+push 1
+pop a
+push 5
+pop b
+push 0
+pop c
+// for c in collection from a to b
+c = a;
+Label enterForLoop:
+if c > b goto Label exitForLoop;
+c = c + 1;
+goto Label enterForLoop;
+Label exitForLoop:
+push c
+print c

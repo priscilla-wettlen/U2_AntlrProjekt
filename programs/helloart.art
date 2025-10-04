@@ -1,0 +1,4 @@
+artwork a = 1;
+artwork b = 6;
+artwork c = a+b;
+paint c;
